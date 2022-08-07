@@ -24,10 +24,10 @@ public abstract class EnemyBaseState
             OnAttack(enemy);
         }
         //!
-        if (enemy.enemyHealth.IsEnemyDie())
-        {
-            OnDie(enemy);
-        }
+        //if (enemy.enemyHealth.IsEnemyDie())
+        //{
+          //  OnDie(enemy);
+        //}
 
         //  if (playerInSightRange && !playerInAttackRange) ChasePlayer();
     }

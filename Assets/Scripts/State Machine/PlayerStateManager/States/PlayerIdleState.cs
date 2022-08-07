@@ -6,7 +6,7 @@ public class PlayerIdleState : PlayerBaseState
 {
     public override void EnterState(PlayerStateManager player)
     {
-        //Debug.Log("Player Idle State");
+        Debug.Log("Player Idle State");
         player.animator.SetTrigger("isIdle");
     }
     public override void OnIdle(PlayerStateManager player)

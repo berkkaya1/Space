@@ -12,9 +12,7 @@ public class PlayerStateManager : MonoBehaviour
     public Joystick joystick;
     float moveSpeed = 7;
     public Animator animator;
-    public PlayerHealth playerHealth;
     public GameObject hpBar;
-
     //! 
 
     //Holds a ref to the active state in state machine
@@ -24,14 +22,15 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerMoveState playerMoveState = new PlayerMoveState();
     public PlayerIdleState playerIdleState = new PlayerIdleState();
 
-
     void Start()
     {
-        currentState = playerIdleState;
-        playerIdleState.EnterState(this);
+
         characterController = GetComponent<CharacterController>();
-        playerHealth = GetComponent<PlayerHealth>();
         animator = GetComponent<Animator>();
+
+        currentState = playerIdleState;
+        SwitchState(currentState);
+        
     }
 
     void Update()
@@ -40,9 +39,11 @@ public class PlayerStateManager : MonoBehaviour
     }
     public void SwitchState(PlayerBaseState state)
     {
+        StopAllCoroutines();
         currentState.ExitState(this);
         currentState = state;
-        state.EnterState(this);
+        currentState.EnterState(this);
+        StartCoroutine(currentState.Coroutine(this));
     }
 
     public int GetPlayerDamage()

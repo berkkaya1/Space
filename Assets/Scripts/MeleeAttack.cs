@@ -6,9 +6,10 @@ public class MeleeAttack : MonoBehaviour
 {
     [SerializeField] int enemyDamage;
     [SerializeField] EnemyStateManager enemy;
-    [SerializeField] PlayerHealth player;
     int playerhp;
+}
 
+    /*
     private void Start()
     {
         playerhp = player.GetPlayerHealth();
@@ -31,3 +32,4 @@ public class MeleeAttack : MonoBehaviour
     }
 
 }
+    */

@@ -8,6 +8,8 @@ using CodeMonkey.HealthSystemCM;
 
 public class EnemyStateManager : MonoBehaviour
 {
+    public bool isDead = false;
+
     public NavMeshAgent navMeshAgent;
     [SerializeField] public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -29,10 +31,8 @@ public class EnemyStateManager : MonoBehaviour
     public Animator animator;
     public EnemyType enemyType;
     //!
-    PlayerHealth playerHealth;
     public GameObject weapon;
     public Collider enemycollider;
-    public EnemyHealth enemyHealth;
     //! &/&&
     public GameObject hpBar;
 
@@ -47,17 +47,18 @@ public class EnemyStateManager : MonoBehaviour
 
     void Start()
     {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        enemycollider = GetComponent<Collider>();
+
         currentState = enemyPatrolingState;
         enemyPatrolingState.EnterState(this);
 
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
+       
 
-        //!
-        enemyHealth = GetComponent<EnemyHealth>();
-        enemyStateManager = GetComponent<EnemyStateManager>();
-        enemyDamage = enemyType.enemyDamage;
-        Debug.Log(enemyDamage);
+       // enemyStateManager = GetComponent<EnemyStateManager>();
+        //enemyDamage = enemyType.enemyDamage;
+        //Debug.Log(enemyDamage);
 
         //particle vs de tanımlamak lazım sonrasında attackta vs.
 

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections;
 
 public abstract class PlayerBaseState
 {
@@ -27,12 +28,18 @@ public abstract class PlayerBaseState
         }
         else { OnIdle(player); }
 
-        if (player.playerHealth.isPlayerDeath)
-        {
-            OnDie(player);
-        }
+        //if (player.playerHealth.isPlayerDeath)
+       // {
+          //  OnDie(player);
+        //}
 
     }
+
+    public virtual IEnumerator Coroutine(PlayerStateManager  player)
+    {
+        yield return null;
+    }
+
     public virtual void OnIdle(PlayerStateManager player)
     {
         player.SwitchState(player.playerIdleState);
